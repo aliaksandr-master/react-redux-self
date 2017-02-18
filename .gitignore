@@ -1,0 +1,16 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+node_modules/
+.tmp/
+.idea/
+
+.DS_Store
+*-secret.json
+*.xml
+*.iml
+.name
+*.orig
+npm-debug.log
+npm-debug.log*
+.gulp-cache
+*_scsslint_tmp*
