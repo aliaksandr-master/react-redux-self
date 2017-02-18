@@ -1,0 +1,36 @@
+{
+  "automock": false,
+  "notify": true,
+  "testPathDirs": [
+    "<rootDir>/lib"
+  ],
+  "resetModules": true,
+  "testEnvironment": "jsdom",
+  "cacheDirectory": "<rootDir>/.tmp/jest-cache",
+  "coverageDirectory": "<rootDir>/.tmp/test-coverage-report",
+  "collectCoverageFrom": [
+    "lib/**/*.{js,jsx}"
+  ],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "/__tests__/"
+  ],
+  "globals": {
+    "process.env.NODE_ENV": "testing"
+  },
+  "moduleFileExtensions": [
+    "",
+    "js",
+    "jsx"
+  ],
+  "testRegex": "/__tests__/[^_]+.+?\\.test\\.js$",
+  "moduleDirectories": [
+    "node_modules"
+  ],
+  "moduleNameMliber": {
+  },
+  "transform": {
+    "\\.jsx?$": "babel-jest"
+  },
+  "verbose": true
+}
