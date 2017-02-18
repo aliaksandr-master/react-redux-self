@@ -1,0 +1,8 @@
+**/*
+
+!lib/**/*
+!README.md
+!.babelrc
+!LICENSE-MIT
+
+lib/__tests__
