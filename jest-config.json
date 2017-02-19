@@ -27,8 +27,6 @@
   "moduleDirectories": [
     "node_modules"
   ],
-  "moduleNameMliber": {
-  },
   "transform": {
     "\\.jsx?$": "babel-jest"
   },
