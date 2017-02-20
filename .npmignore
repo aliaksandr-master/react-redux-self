@@ -5,4 +5,4 @@
 !.babelrc
 !LICENSE-MIT
 
-lib/__tests__
+**/__tests__
