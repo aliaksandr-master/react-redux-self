@@ -69,13 +69,13 @@
     "react-test-renderer": "15.4.2",
     "react-with-context": "1.0.2",
     "reselect": "^2.5.4",
-    "urijs": "1.18.4",
     "webpack": "1.14.0"
   },
   "peerDependencies": {
+    "reselect": "^2.5.4",
+    "normalizr": "^3.2.1",
     "react": ">= 15.4.2",
-    "lodash": ">= 4.17.4",
-    "urijs": ">= 1.18.4"
+    "lodash": ">= 4.17.4"
   },
   "engines": {
     "node": "7.2.0"
