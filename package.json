@@ -1,6 +1,6 @@
 {
   "name": "react-redux-self",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "predictable react router",
   "main": "lib/index.js",
   "scripts": {
