@@ -68,10 +68,12 @@
     "react-redux": "^5.0.2",
     "react-test-renderer": "15.4.2",
     "react-with-context": "1.2.1",
+    "redux": "3.6.0",
     "reselect": "^2.5.4",
     "webpack": "1.14.0"
   },
   "peerDependencies": {
+    "redux": ">= 3.6.0",
     "reselect": ">= 2.5.4",
     "normalizr": ">= 3.2.1",
     "react": ">= 15.4.2",
