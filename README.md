@@ -11,6 +11,16 @@ $ npm install react react-redux redux reselect normalizr
 $ npm install react-redux-self --save
 ```
 
+# Why do you need to use `react-redux-self`, Abilities:
+- Independence of the local component state from the global state directly. You don't need to define one more global reducer, just attach it to component.
+- Independence of the similar components and their state on one page by default works at once relating to `selfID``. (like [redux-form](http://redux-form.com))
+- Using a [normalizr]((https://github.com/paularmstrong/normalizr)) helps to speed up components update when changing by default, the same concerns manual usage of reselect-factory. Reselect by default isn't convenient and it's often used for the components incorrectly causing uncontrolled memory leaks. This Library provides useful interface (shortcuts) for this operations.
+- Removed opportunity of direct working with `mapStateToProps`, now it's possible only through `selector`/`getters` which speeds up the working and redrawing process. You don't care how many connects you have on the page. It also simplifies logic fragmentation and it's hierarchy
+- Forces to write only the important stuff without all that secondary sh*t in the state in the reducers saving only what can't be calculated. Everything that can be calculated should be calculated in the selector
+- It fix `redux` state lifecycle. After the component's death it's local reducer also dies (or reducerS, there can be plenty of them and it looks like state mixins of that component, sometimes it's convenient), the component state also dies. There's nothing left and `you shouldn't worry about the memory and store size`. The only part that stays is what is shown on the page.
+- This approach divides the global reducers with the component reducers and let's think what should be common and what should be local from the beginning.
+- And the most important reason is that you don't use 2 state types - setState and redux-reducers to have all the team operations on the project in the same flow. There will also be an option with setState with the same API for those who want to divide the state from the global store (it will speed up the working process), - in development
+- if there's no need in the local store (reducer) you can do without it. API isn't changed in this case, if the reducer isn't transferred you work directly with the global store and the updates will work out in relation to it with the same API that's there if you're using the local store.
 
 # Basic Usage
 
@@ -34,6 +44,7 @@ render((
 
 
 
+
 // /components/MyComponent.jsx
 import React, { PropTypes } from 'react';
 
@@ -53,6 +64,8 @@ export default MyComponent;
 
 
 
+
+
 // /components/MyComponent.store.js
 import { actionsFactory } from 'react-redux-self';
 
@@ -65,7 +78,7 @@ const changeNameAction = (newName) => ({
   payload: { name: newName } 
 });
 
-export default (state = { name: 'John' }, action) => {
+export default (state = { name: 'John', email: 'example@example.com' }, action) => {
   if (action.type === CHANGE_NAME) {
     return {
       ...state,
@@ -78,16 +91,25 @@ export default (state = { name: 'John' }, action) => {
 
 
 
+
 // /components/MyComponent.container.js
 import { compose, withHandlers } from 'recompose';
 import MyComponent from './MyComponent.jsx';
 import { connect } from 'react-redux-self';
 import reducer, { changeNameAction } from './MyComponent.store.js'
+import { calcGravatarByEmail } from 'lib/gravatar';
 
 export default compose(
   connect({
     reducer,
-    mapDispatchToProps: { changeNameAction }
+    mapDispatchToProps: { changeNameAction },
+    getters: [
+      (ownStore, globalStore, props) => ownStore 
+    ],
+    selector: (ownStore) => ({
+      ...ownStore,
+      gravatar: calcGravatarByEmail(ownStore.email) // it should be calculated. do not store it OR do not calc it in render function 
+    })
   }),
   withHandlers({
     handleChangeName: ({ changeNameAction }) => () => {
@@ -95,7 +117,6 @@ export default compose(
     }
   })
 )(MyComponent);
-
 ```
 
 
@@ -175,6 +196,18 @@ type `Function` default `denormalize` (from configuration)
 
 ##### options.denormalizeEntitiesGetter(ownStore, globalStore, ownProps)
 type `Function` default `(_1, { entities }) => entities` (from configuration)
+
+
+##### options.mapDispatchToProps - (redux connect)
+type `Object` default `null`
+
+> this property only for `global` connectionType
+
+##### options.mergeProps - (redux connect)
+> this property only for `global` connectionType
+  
+#### options.connectOptions - (redux connect options)
+> this property only for `global` connectionType
 
 ### configure(settings)
 You can change global settings of this wrapper
