@@ -62,6 +62,7 @@
     "jest-cli": "19.0.1",
     "lodash": "4.17.4",
     "normalizr": "^3.2.1",
+    "prop-types": "^15.5.10",
     "react": "15.4.2",
     "react-addons-test-utils": "15.4.2",
     "react-dom": "15.4.2",
@@ -73,6 +74,7 @@
     "webpack": "1.14.0"
   },
   "peerDependencies": {
+    "prop-types": "^15.5.10",
     "redux": ">= 3.6.0",
     "reselect": ">= 2.5.4",
     "normalizr": ">= 3.2.1",
