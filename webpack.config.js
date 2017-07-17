@@ -40,19 +40,13 @@ config.module = {};
 
 
 
-
-config.module.noParse = [
-];
-
-
-
 config.module.loaders = [
   {
     test: /\.(?:jsx?)(?:\?.*)?$/i,
     exclude: [
     ],
     loaders: [
-      `babel?cacheDirectory=${DIR_BABEL_CACHE_DIR}`
+      `babel-loader?cacheDirectory=${DIR_BABEL_CACHE_DIR}`
     ]
   }
 ];
@@ -60,11 +54,15 @@ config.module.loaders = [
 
 
 
-config.plugins = [];
+config.plugins = [
+  new webpack.LoaderOptionsPlugin({
+    debug: true
+  })
+];
 
 
 
-config.plugins.push(new webpack.NoErrorsPlugin());
+config.plugins.push(new webpack.NoEmitOnErrorsPlugin());
 
 
 
@@ -74,19 +72,12 @@ config.plugins.push(new webpack.DefinePlugin({
 
 
 
-config.plugins.push(new webpack.optimize.DedupePlugin());
-
-
-
-config.plugins.push(new webpack.optimize.OccurenceOrderPlugin(true));
-
-
-
 config.resolve = {
-  root: DIR_SRC,
-  moduleDirectories: [ 'node_modules' ],
-  extensions: [ '', '.js' ],
-  alias: {}
+  modules: [
+    path.join(__dirname, DIR_SRC),
+    'node_modules'
+  ],
+  extensions: [ '.js' ]
 };
 
 
@@ -100,9 +91,8 @@ config.resolveLoader = {
 
 
 config.bail = true;
-config.devtool = null;
+config.devtool = false;
 config.cache = false;
-config.debug = false;
 config.watch = false;
 
 

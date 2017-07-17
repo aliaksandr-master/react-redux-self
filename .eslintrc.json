@@ -8,8 +8,7 @@
     "eslint",
     "plugin:react/recommended",
     "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:jsx-a11y/recommended"
+    "plugin:import/warnings"
   ],
   "globals": {
     "__ASSERTS_ENABLED__": true,
@@ -21,12 +20,8 @@
   },
   "plugins": [
     "react",
-    "jsx-a11y",
     "import"
   ],
-  "ecmaFeatures": {
-    "jsx": true
-  },
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
@@ -39,6 +34,9 @@
       "webpack": {
         "config": "webpack.config.js"
       }
+    },
+    "ecmaFeatures": {
+      "jsx": true
     }
   },
   "rules": {
@@ -71,37 +69,6 @@
     "import/max-dependencies": [0],
     "import/no-unassigned-import": [0],
     "import/no-named-default": [2],
-
-    "jsx-a11y/anchor-has-content": [0],
-    "jsx-a11y/aria-props": [0],
-    "jsx-a11y/aria-proptypes": [0],
-    "jsx-a11y/aria-role": [0],
-    "jsx-a11y/aria-unsupported-elements": [0],
-    "jsx-a11y/click-events-have-key-events": [0],
-    "jsx-a11y/heading-has-content": [2],
-    "jsx-a11y/href-no-hash": [2],
-    "jsx-a11y/html-has-lang": [0],
-    "jsx-a11y/img-has-alt": [0],
-    "jsx-a11y/img-redundant-alt": [0],
-    "jsx-a11y/label-has-for": [2],
-    "jsx-a11y/lang": [0],
-    "jsx-a11y/mouse-events-have-key-events": [0],
-    "jsx-a11y/no-access-key": [2],
-    "jsx-a11y/no-marquee": [0],
-    "jsx-a11y/no-onchange": [0],
-    "jsx-a11y/no-static-element-interactions": [0],
-    "jsx-a11y/onclick-has-focus": [0],
-    "jsx-a11y/onclick-has-role": [0],
-    "jsx-a11y/role-has-required-aria-props": [0],
-    "jsx-a11y/role-supports-aria-props": [0],
-    "jsx-a11y/scope": [0],
-    "jsx-a11y/tabindex-no-positive": [2],
-    "jsx-a11y/accessible-emoji": [0],
-    "jsx-a11y/aria-activedescendant-has-tabindex": [0],
-    "jsx-a11y/iframe-has-title": [0],
-    "jsx-a11y/no-autofocus": [0],
-    "jsx-a11y/no-distracting-elements": [0],
-    "jsx-a11y/no-redundant-roles": [0],
 
     "react/display-name": [2],
     "react/forbid-component-props": [0],
