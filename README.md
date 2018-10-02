@@ -95,12 +95,12 @@ export default (state = { name: 'John', email: 'example@example.com' }, action) 
 // /components/MyComponent.container.js
 import { compose, withHandlers } from 'recompose';
 import MyComponent from './MyComponent.jsx';
-import { connect } from 'react-redux-self';
+import { globalStoreConnect } from 'react-redux-self';
 import reducer, { changeNameAction } from './MyComponent.store.js'
 import { calcGravatarByEmail } from 'lib/gravatar';
 
 export default compose(
-  connect({
+  globalStoreConnect({
     reducer,
     mapDispatchToProps: { changeNameAction },
     getters: [
@@ -122,7 +122,7 @@ export default compose(
 
 ## API
 
-### connect(options)
+### globalStoreConnect(options)
 
 Connect is wrapper of "native" `react-redux` connect. 
 
@@ -130,6 +130,10 @@ It provides `selector` and `denormalize` helpers to improve development experien
   
 It provides the component's reducer. 
 It can store data inside and you can use this component several times on the page and this data will not be crossing (there is full isolation between the components).
+
+### localStateConnect(options)
+
+The same as `globalStoreConnect` but it use local state storage (emulated "redux on component" approach). Has no connection to redux itself
 
 #### options.selfID 
 type `String`. Default `null`
@@ -166,13 +170,6 @@ type `Function` or `[Function]`. Default `null`
 It creates it's own store in this component.
 
 if reducer !== `null` and selector === `null` and getters === `null`. Selector and getter will be pointing to it's own store first.
-
-#### options.connectionType
-type `String`. Default `global`
-
-It defines the kind of the store you need: `global`, `isolated`, `set-state`
-
-> Only global type is implemented, but other types are in short-term plans
 
 #### options.denormalize = { propName: scheme }
 type `Object`. Default `null`
@@ -215,14 +212,14 @@ You can change global settings of this wrapper
 #### settings.denormalizeEntitiesGetter
 Default: (self, storeState) => storeState.entities
 
-#### settings.denormalizeFunction = null,
-Default: denormalize
-
-#### settings.connectionType = null,
-Default: 'global'
+#### settings.denormalizeFunction
+`Function` Default: denormalize
 
 #### settings.reducerName = null
-Default: 'self'
+`String` Default: 'self'
+
+#### settings.selfIdByComponentName = null
+`Boolean` Default: 'false'
 
 
 ### actionsFactory(ComponentName) => (ActionName) => computed name
