@@ -4,6 +4,9 @@
 [![devDependency Status](https://david-dm.org/aliaksandr-master/react-redux-self/dev-status.svg?style=flat-square)](https://david-dm.org/aliaksandr-master/react-redux-self#info=devDependencies)
 [![peerDependency Status](https://david-dm.org/aliaksandr-master/react-redux-self/peer-status.svg?style=flat-square)](https://david-dm.org/aliaksandr-master/react-redux-self?type=peer)
 
+
+it supports `react-redux 6.0`
+
 # react-redux-self
 
 ```shell
