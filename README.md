@@ -184,7 +184,7 @@ const someEntityScheme = new Entity('some');
 const someArrayItemScheme = new Entity('someArrayItem');
 
 connect({
-  denormalie: {
+  denormalize: {
     pathToProp: someEntityScheme,
     pathToAnotherProp: [ someArrayItemScheme ]
   }
